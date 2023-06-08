@@ -25,3 +25,20 @@ class Book(Base):
 
     def __repr__(self):
         return f"Book(id={self.id}, title='{self.title}')"
+    
+class Author(Base):
+    __tablename__ = "authors"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(15), nullable=False)
+
+    books = relationship("Book", back_populates="author")
+
+
+class Genre(Base):
+    __tablename__ = "genres"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(50), nullable=False)
+
+    books = relationship("Book", back_populates="genre")    
